@@ -18,8 +18,26 @@ summary(datos)
 
 ### 2. Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
 
-
 ```{r movies}
 nombres_columnas <- colnames(datos)
 nombres_columnas
+```
+
+```{r movies}
+if (!requireNamespace("knitr", quietly = TRUE)) {
+  install.packages("knitr")
+}
+
+library(knitr)
+# Definir manualmente los tipos de variables que son cada una
+tipo <- c("Cualitativa nominal", "Cualitativa ordinal", "Cuantitativa continua", 
+          "Cualitativa nominal", "Cualitativa nominal", "Cualitativa nominal", 
+          "Cuantitativa continua o discreta", "Cuantitativa continua", 
+          "Cuantitativa continua", "Cuantitativa discreta", "Cuantitativa continua")
+
+# Crear un dataframe con los nombres de las columnas y los tipos que son
+tabla_columnas_valores <- data.frame(Variables = colnames(datos), TipoVariable = tipo)
+
+# Imprimir la tabla usando kable()
+kable(tabla_columnas_valores, format = "html", row.names = TRUE)
 ```
