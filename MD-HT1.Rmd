@@ -30,10 +30,16 @@ if (!requireNamespace("knitr", quietly = TRUE)) {
 
 library(knitr)
 # Definir manualmente los tipos de variables que son cada una
-tipo <- c("Cualitativa nominal", "Cualitativa ordinal", "Cuantitativa continua", 
-          "Cualitativa nominal", "Cualitativa nominal", "Cualitativa nominal", 
-          "Cuantitativa continua o discreta", "Cuantitativa continua", 
-          "Cuantitativa continua", "Cuantitativa discreta", "Cuantitativa continua")
+tipo <- c("Cuantitativa discreta", "Cuantitativa continua", "Cualitativa nominal",
+                    "Cualitativa nominal", "Cualitativa nominal", "Cualitativa nominal",
+                    "Cualitativa nominal", "Cuantitativa continua",
+                    "Cuantitativa continua", "Cualitativa nominal", "Cualitativa nominal",
+                    "Cualitativa nominal", "Cuantitativa continua", "Cualitativa nominal",
+                    "Cualitativa nominal", "Cualitativa nominal", "Cualitativa nominal",
+                    "Cuantitativa continua", "Cualitativa nominal", "Cuantitativa continua",
+                    "Cuantitativa discreta", "Cuantitativa continua", "Cuantitativa continua",
+                    "Cuantitativa discreta", "Cuantitativa discreta", "Cuantitativa discreta",
+                    "Cuantitativa discreta")
 
 # Crear un dataframe con los nombres de las columnas y los tipos que son
 tabla_columnas_valores <- data.frame(Variables = colnames(datos), TipoVariable = tipo)
