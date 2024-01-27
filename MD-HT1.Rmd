@@ -45,8 +45,342 @@ kable(tabla_columnas_valores, format = "html", row.names = TRUE)
 
 ## 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas. Explique todos los resultados.
 
+### budget
+```{r movies}
+# Descargamos ggplot2
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  install.packages("ggplot2")
+}
+library(ggplot2)
 
+# Tomemos 'budget' como ejemplo
+budget_data <- datos$budget
 
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = budget_data), aes(x = x)) +
+  geom_histogram(binwidth = 50000000, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de Budget",
+       x = "Budget",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = budget_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de Budget",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### revenue
+```{r movies}
+library(ggplot2)
+
+# Tomemos 'revenue' como ejemplo
+revenue_data <- datos$revenue
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = revenue_data), aes(x = x)) +
+  geom_histogram(binwidth = 50000000, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de revenue",
+       x = "revenue",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = revenue_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de revenue",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### runtime
+```{r movies}
+library(ggplot2)
+
+# Tomemos 'runtime' como ejemplo
+runtime_data <- datos$runtime
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = runtime_data), aes(x = x)) +
+  geom_histogram(binwidth = 10, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de runtime",
+       x = "runtime",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = runtime_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de runtime",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### actorsPopularity
+```{r movies}
+library(ggplot2)
+
+# Tomemos 'actorsPopularity' como ejemplo
+actorsPopularity_data <- datos$actorsPopularity
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = actorsPopularity_data), aes(x = x)) +
+  geom_histogram(binwidth = 10, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de actorsPopularity",
+       x = "actorsPopularity",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = actorsPopularity_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de actorsPopularity",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### popularity
+```{r movies}
+library(ggplot2)
+
+# Tomemos 'popularity' como ejemplo
+popularity_data <- datos$popularity
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = popularity_data), aes(x = x)) +
+  geom_histogram(binwidth = 50, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de popularity",
+       x = "popularity",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = popularity_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de popularity",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### voteAvg
+```{r movies}
+library(ggplot2)
+
+# Tomemos 'voteAvg' como ejemplo
+voteAvg_data <- datos$voteAvg
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = voteAvg_data), aes(x = x)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de voteAvg",
+       x = "voteAvg",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = voteAvg_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de voteAvg",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### voteCount
+```{r movies}
+library(ggplot2)
+
+# Tomemos 'voteCount' como ejemplo
+voteCount_data <- datos$voteCount
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = voteCount_data), aes(x = x)) +
+  geom_histogram(binwidth = 50, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de voteCount",
+       x = "voteCount",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = voteCount_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de voteCount",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### genresAmount
+```{r movies}
+library(ggplot2)
+
+# Tomemos 'genresAmount' como ejemplo
+genresAmount_data <- datos$genresAmount
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = genresAmount_data), aes(x = x)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de genresAmount",
+       x = "genresAmount",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = genresAmount_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de genresAmount",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### productionCoAmount
+```{r movies}
+library(ggplot2)
+
+# Tomemos 'productionCoAmount' como ejemplo
+productionCoAmount_data <- datos$productionCoAmount
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = productionCoAmount_data), aes(x = x)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de productionCoAmount",
+       x = "productionCoAmount",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = productionCoAmount_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de productionCoAmount",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### productionCountriesAmount
+```{r movies}
+library(ggplot2)
+
+productionCountriesAmount_data <- datos$productionCountriesAmount
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = productionCountriesAmount_data), aes(x = x)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de productionCountriesAmount",
+       x = "productionCountriesAmount",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = productionCountriesAmount_data), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de productionCountriesAmount",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### actorsAmount
+```{r movies}
+library(ggplot2)
+
+actorsAmount_data <- datos$actorsAmount
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = actorsAmount_data ), aes(x = x)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de actorsAmount",
+       x = "actorsAmount",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = actorsAmount_data ), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de actorsAmount",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### castWomenAmount
+```{r movies}
+library(ggplot2)
+castWomenAmount_data <- datos$castWomenAmount
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = castWomenAmount_data ), aes(x = x)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de Budget",
+       x = "castWomenAmount",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = castWomenAmount_data ), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de Budget",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
+### castMenAmount
+```{r movies}
+library(ggplot2)
+castMenAmount_data <- datos$castMenAmount
+
+# Crear histograma
+hist_plot <- ggplot(data.frame(x = castMenAmount_data ), aes(x = x)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histograma de castMenAmount",
+       x = "castWomenAmount",
+       y = "Frecuencia")
+
+# Crear QQ-Plot
+qq_plot <- ggplot(data.frame(x = castMenAmount_data ), aes(sample = x)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(title = "QQ-Plot de castMenAmount",
+       x = "Cuantiles teóricos",
+       y = "Cuantiles observados")
+
+# Imprimir los gráficos
+print(hist_plot)
+print(qq_plot)
+```
 ### Genres
 
 ```{r movies}
