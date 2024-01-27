@@ -10,18 +10,13 @@ date: "2024-01-25"
 datos <- read.csv("movies.csv")
 ```
 
-## Resumen
+## 1. Resumen de nuestro conjunto de datos
 
 ```{r movies}
 summary(datos)
 ```
 
-### 2. Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
-
-```{r movies}
-nombres_columnas <- colnames(datos)
-nombres_columnas
-```
+## 2. Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
 
 ```{r movies}
 if (!requireNamespace("knitr", quietly = TRUE)) {
@@ -37,7 +32,7 @@ tipo <- c("Cuantitativa discreta", "Cuantitativa continua", "Cualitativa nominal
                     "Cualitativa nominal", "Cuantitativa continua", "Cualitativa nominal",
                     "Cualitativa nominal", "Cualitativa nominal", "Cualitativa nominal",
                     "Cuantitativa continua", "Cualitativa nominal", "Cuantitativa continua",
-                    "Cuantitativa discreta", "Cuantitativa continua", "Cuantitativa continua",
+                    "Cuantitativa discreta", "Cuantitativa discreta", "Cuantitativa discreta",
                     "Cuantitativa discreta", "Cuantitativa discreta", "Cuantitativa discreta",
                     "Cuantitativa discreta")
 
@@ -46,4 +41,218 @@ tabla_columnas_valores <- data.frame(Variables = colnames(datos), TipoVariable =
 
 # Imprimir la tabla usando kable()
 kable(tabla_columnas_valores, format = "html", row.names = TRUE)
+```
+
+## 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas. Explique todos los resultados.
+
+
+
+### Genres
+
+```{r movies}
+# Crear tabla de frecuencias para la variable "genres"
+genres_sep <- strsplit(as.character(datos$genres), "\\|")
+genres_sep <- data.frame(genres = unlist(genres_sep))
+genres_table <- as.data.frame(table(genres_sep))
+colnames(genres_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  genres_table$Valor <- iconv(genres_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(genres_table))
+})
+```
+
+### productionCompany
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "productionCompany"
+productionCompany_sep <- strsplit(as.character(datos$productionCompany), "\\|")
+productionCompany_sep <- data.frame(productionCompany = unlist(productionCompany_sep))
+productionCompany_table <- as.data.frame(table(productionCompany_sep))
+colnames(productionCompany_table) <- c("Valor", "Frecuencia")
+
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Filtrar valores que contienen caracteres no deseados
+  productionCompany_table <- productionCompany_table[!grepl("<U\\+", productionCompany_table$Valor), ]
+  
+  # Convertir las cadenas antes de imprimir
+  productionCompany_table$Valor <- iconv(productionCompany_table$Valor, to = "UTF-8", sub = "byte")
+  
+  # Imprimir solo las primeras filas de la tabla
+  print(head(productionCompany_table))
+})
+
+```
+
+### productionCompanyCountry
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "productionCompanyCountry"
+productionCompanyCountry_sep <- strsplit(as.character(datos$productionCompanyCountry), "\\|")
+productionCompanyCountry_sep <- data.frame(productionCompanyCountry = unlist(productionCompanyCountry_sep))
+productionCompany_table <- as.data.frame(table(productionCompanyCountry_sep))
+colnames(productionCompany_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  productionCompany_table$Valor <- iconv(productionCompany_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(productionCompany_table))
+})
+```
+
+### productionCountry
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "productionCountry"
+productionCountry_sep <- strsplit(as.character(datos$productionCountry), "\\|")
+productionCountry_sep <- data.frame(productionCountry = unlist(productionCountry_sep))
+productionCountry_table <- as.data.frame(table(productionCountry_sep))
+colnames(productionCountry_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  productionCountry_table$Valor <- iconv(productionCountry_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(productionCountry_table))
+})
+```
+
+### video
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "video"
+video_sep <- strsplit(as.character(datos$video), "\\|")
+video_sep <- data.frame(video = unlist(video_sep))
+video_table <- as.data.frame(table(video_sep))
+colnames(video_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  video_table$Valor <- iconv(video_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(video_table))
+})
+```
+
+### director
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "director"
+director_sep <- strsplit(as.character(datos$director), "\\|")
+director_sep <- data.frame(director = unlist(director_sep))
+director_table <- as.data.frame(table(director_sep))
+colnames(director_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  director_table$Valor <- iconv(director_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(director_table))
+})
+```
+
+### actors
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "actors"
+actors_sep <- strsplit(as.character(datos$actors), "\\|")
+actors_sep <- data.frame(actors = unlist(actors_sep))
+actors_table <- as.data.frame(table(actors_sep))
+colnames(actors_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  actors_table$Valor <- iconv(actors_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(actors_table))
+})
+```
+
+### actorsCharacter
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "actorsCharacter"
+actorsCharacter_sep <- strsplit(as.character(datos$actorsCharacter), "\\|")
+actorsCharacter_sep <- data.frame(actorsCharacter = unlist(actorsCharacter_sep))
+actorsCharacter_table <- as.data.frame(table(actorsCharacter_sep))
+colnames(actorsCharacter_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  actorsCharacter_table$Valor <- iconv(actorsCharacter_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(actorsCharacter_table))
+})
+```
+
+### originalTitle
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "originalTitle"
+originalTitle_sep <- strsplit(as.character(datos$originalTitle), "\\|")
+originalTitle_sep <- data.frame(originalTitle = unlist(originalTitle_sep))
+originalTitle_table <- as.data.frame(table(originalTitle_sep))
+colnames(originalTitle_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  originalTitle_table$Valor <- iconv(originalTitle_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(originalTitle_table))
+})
+```
+
+### title
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "title"
+title_sep <- strsplit(as.character(datos$title), "\\|")
+title_sep <- data.frame(title = unlist(title_sep))
+title_table <- as.data.frame(table(title_sep))
+colnames(title_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  title_table$Valor <- iconv(title_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(title_table))
+})
+```
+
+### originalLanguage
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "originalLanguage"
+originalLanguage_sep <- strsplit(as.character(datos$originalLanguage), "\\|")
+originalLanguage_sep <- data.frame(originalLanguage = unlist(originalLanguage_sep))
+originalLanguage_table <- as.data.frame(table(originalLanguage_sep))
+colnames(originalLanguage_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  originalLanguage_table$Valor <- iconv(originalLanguage_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(originalLanguage_table))
+})
+```
+
+### releaseDate
+
+```{r movies , echo=FALSE}
+# Crear tabla de frecuencias para la variable "releaseDate"
+releaseDate_sep <- strsplit(as.character(datos$releaseDate), "\\|")
+releaseDate_sep <- data.frame(releaseDate = unlist(releaseDate_sep))
+releaseDate_table <- as.data.frame(table(releaseDate_sep))
+colnames(releaseDate_table) <- c("Valor", "Frecuencia")
+# Suprimir advertencias solo para la conversión
+suppressWarnings({
+  # Convertir las cadenas antes de imprimir
+  releaseDate_table$Valor <- iconv(releaseDate_table$Valor, to = "UTF-8", sub = "byte")
+  # Imprimir solo las primeras filas de la tabla
+  print(head(releaseDate_table))
+})
 ```
