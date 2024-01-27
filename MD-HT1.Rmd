@@ -292,6 +292,21 @@ print(top_10_ingresos[, c("title", "revenue")])
 top_voteCount <- head(datos[order(-datos$voteCount), ], 1)
 
 # Imprimir el resultado
-print(top_voteCount[, c("title", "revenue")])
+print(top_voteCount[, c("title", "voteCount")])
 ```
+### 4.4  ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios?
+```{r movies}
+
+# Seleccionar las primeras 10 filas
+worst_voteAvg <- head(datos[order(datos$voteAvg), ], 1)
+
+# Imprimir el resultado
+print(worst_voteAvg[, c("title", "voteAvg")])
+```
+
+### 4.5 ¿Cuántas películas se hicieron en cada año? ¿En qué año se hicieron más películas? Haga un gráfico de barras
+
+
+### 4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
+
 
