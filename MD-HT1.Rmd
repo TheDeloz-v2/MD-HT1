@@ -256,3 +256,22 @@ suppressWarnings({
   print(head(releaseDate_table))
 })
 ```
+
+## 4.Responda las siguientes preguntas:
+
+## 4.1 ¿Cuáles son las 10 películas que contaron con más presupuesto?
+```{r movies}
+# Instalar y cargar el paquete dplyr si aún no está instalado
+if (!requireNamespace("dplyr", quietly = TRUE)) {
+  install.packages("dplyr")
+}
+
+library(dplyr)
+
+
+# Seleccionar las primeras 10 filas
+top_10_presupuesto <- head(datos[order(-datos$budget), ], 10)
+
+# Imprimir el resultado
+print(top_10_presupuesto[, c("title", "budget")])
+```
