@@ -259,7 +259,7 @@ suppressWarnings({
 
 ## 4.Responda las siguientes preguntas:
 
-## 4.1 ¿Cuáles son las 10 películas que contaron con más presupuesto?
+### 4.1 ¿Cuáles son las 10 películas que contaron con más presupuesto?
 ```{r movies}
 # Instalar y cargar el paquete dplyr si aún no está instalado
 if (!requireNamespace("dplyr", quietly = TRUE)) {
@@ -275,3 +275,23 @@ top_10_presupuesto <- head(datos[order(-datos$budget), ], 10)
 # Imprimir el resultado
 print(top_10_presupuesto[, c("title", "budget")])
 ```
+### 4.2 ¿Cuáles son las 10 películas que más ingresos tuvieron?
+```{r movies}
+
+# Seleccionar las primeras 10 filas
+top_10_ingresos <- head(datos[order(-datos$revenue), ], 10)
+
+# Imprimir el resultado
+print(top_10_ingresos[, c("title", "revenue")])
+```
+
+### 4.3  ¿Cuál es la película que más votos tuvo?
+```{r movies}
+
+# Seleccionar las primeras 10 filas
+top_voteCount <- head(datos[order(-datos$voteCount), ], 1)
+
+# Imprimir el resultado
+print(top_voteCount[, c("title", "revenue")])
+```
+
