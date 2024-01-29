@@ -2,6 +2,7 @@
 title: "MD-HT1"
 output: html_document
 date: "2024-01-25"
+repo: https://github.com/TheDeloz-v2/MD-HT1.git 
 ---
 
 ## Carga de datos
@@ -727,4 +728,28 @@ genre_counts <- top_10_runtime %>%
 print(genre_counts)
 ```
 
-### 4.16 (Preguntas para 10 puntos extras)
+### 5.1 Cómo se distribuye la duración de las peliculas
+
+```{r movies}
+# Crear histograma
+hist(datos$runtime, main = "Distribución de Duraciones de Películas", xlab = "Duración en min", ylab = "Frecuencia", col = "skyblue", border = "black")
+
+
+```
+
+### 5.2 Existe una relación entre la popularidad y las votaciones
+```{r movies}
+# Crear diagrama de dispersión
+plot(datos$popularity, datos$voteAvg, main = "Relación entre Popularidad y Votaciones", xlab = "Popularidad", ylab = "Votación", pch = 16, col = "darkgreen")
+```
+
+### 5.3 Cual es la proporción de películas con y sin video disponible
+```{r movies}
+# Crear gráfico de pastel
+pie(table(datos$video), main = "Proporción de Películas con Video Disponible", col = c("lightgreen", "lightpink"))
+```
+
+### 5.4 
+
+``` {r movies}
+```
