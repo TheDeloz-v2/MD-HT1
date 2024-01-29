@@ -692,4 +692,22 @@ cat("\nGénero Principal que Predomina en el Conjunto de Datos:\n")
 print(genero_principal_mas_comun)
 ```
 
+### 4.7 ¿Las películas de qué genero principal obtuvieron mayores ganancias?
 
+### 4.8 ¿La cantidad de actores influye en los ingresos de las películas?¿se han hecho películas con más actores en los últimos años?
+
+### 4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
+
+### 4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
+
+### 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión
+
+### 4.12 ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
+
+### 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos?¿cuantas películas, en promedio, se han lanzado por mes?
+
+### 4.14 ¿Cómo se correlacionan las calificaciones con el éxito comercial?
+
+### 4.15 ¿A qué género principal pertenecen las películas más largas?
+
+### 4.16 (Preguntas para 10 puntos extras)
