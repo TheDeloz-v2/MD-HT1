@@ -695,5 +695,36 @@ print(genero_principal_mas_comun)
 ### 4.14 ¿Cómo se correlacionan las calificaciones con el éxito comercial?
 
 ### 4.15 ¿A qué género principal pertenecen las películas más largas?
+```{r movies}
+# Cargar la librería ggplot2
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  install.packages("ggplot2")
+}
+library(ggplot2)
+
+# Cargar la librería dplyr
+if (!requireNamespace("dplyr", quietly = TRUE)) {
+  install.packages("dplyr")
+}
+library(dplyr)
+
+# Cargar la librería stringr
+if (!requireNamespace("stringr", quietly = TRUE)) {
+  install.packages("stringr")
+}
+library(stringr)
+
+# Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
+top_10_runtime <- head(datos[order(-datos$runtime), c("title", "genres")], 15)
+
+# Contar la frecuencia de cada género
+genre_counts <- top_10_runtime %>%
+  mutate(first_genre = str_extract(genres, "^[^|]+")) %>%
+  count(first_genre) %>%
+  arrange(desc(n))
+
+
+print(genre_counts)
+```
 
 ### 4.16 (Preguntas para 10 puntos extras)
