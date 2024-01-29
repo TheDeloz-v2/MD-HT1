@@ -316,7 +316,7 @@ actorsAmount_data <- datos$actorsAmount
 
 # Crear histograma
 hist_plot <- ggplot(data.frame(x = actorsAmount_data ), aes(x = x)) +
-  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  geom_histogram(binwidth = 50000, fill = "blue", color = "black", alpha = 0.7) +
   labs(title = "Histograma de actorsAmount",
        x = "actorsAmount",
        y = "Frecuencia")
@@ -630,17 +630,66 @@ print(top_voteCount[, c("title", "voteCount")])
 ```
 ### 4.4  ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios?
 ```{r movies}
-
-# Seleccionar las primeras 10 filas
-worst_voteAvg <- head(datos[order(datos$voteAvg), ], 1)
+# Seleccionar la película con la peor calificación (voto promedio)
+worst_voteAvg <- datos[which.min(datos$voteAvg), c("title", "voteAvg")]
 
 # Imprimir el resultado
-print(worst_voteAvg[, c("title", "voteAvg")])
+cat("La película con la peor calificación es:", worst_voteAvg$title, "con un voto promedio de:", worst_voteAvg$voteAvg, "\n")
 ```
 
 ### 4.5 ¿Cuántas películas se hicieron en cada año? ¿En qué año se hicieron más películas? Haga un gráfico de barras
+```{r movies}
+# Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
+datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
 
+# Crear tabla con el número de películas por año
+peliculas_por_ano <- table(datos$releaseYear)
+
+# Encontrar el año con más películas
+ano_mas_peliculas <- names(peliculas_por_ano[which.max(peliculas_por_ano)])
+
+# Imprimir el número de películas por año
+cat("Número de películas por año:\n")
+print(peliculas_por_ano)
+
+# Imprimir en qué año se hicieron más películas
+cat("\nEn el año", ano_mas_peliculas, "se hicieron más películas.\n")
+
+# Crear gráfico de barras
+barplot(peliculas_por_ano, main = "Número de Películas por Año", xlab = "Año", ylab = "Número de Películas")
+
+```
 
 ### 4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
+```{r movies}
+# Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
+datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
+
+# Ordenar las películas por fecha de lanzamiento de manera descendente
+datos_ordenados <- datos[order(-datos$releaseYear), ]
+
+# Seleccionar las 20 películas más recientes
+top_20_recientes <- head(datos_ordenados, 20)
+
+# Obtener el género principal de las 20 películas más recientes
+genero_principal_top_20 <- table(unlist(strsplit(top_20_recientes$genres, "\\|")))
+
+# Obtener el género principal que predomina en el conjunto de datos
+genero_principal_total <- table(unlist(strsplit(datos$genres, "\\|")))
+
+# Encontrar el género principal más común
+genero_principal_mas_comun <- names(genero_principal_total[which.max(genero_principal_total)])
+
+# Crear gráfico de barras para el género principal de las 20 películas más recientes
+barplot(genero_principal_top_20, main = "Género Principal de las 20 Películas Más Recientes", xlab = "Género", ylab = "Número de Películas")
+
+# Imprimir el género principal de las 20 películas más recientes
+cat("\nGénero Principal de las 20 Películas Más Recientes:\n")
+print(genero_principal_top_20)
+
+# Imprimir el género principal que predomina en el conjunto de datos
+cat("\nGénero Principal que Predomina en el Conjunto de Datos:\n")
+print(genero_principal_mas_comun)
+```
 
 
