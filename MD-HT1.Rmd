@@ -46,6 +46,7 @@ kable(tabla_columnas_valores, format = "html", row.names = TRUE)
 ## 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas. Explique todos los resultados.
 
 ### budget
+
 ```{r movies}
 # Descargamos ggplot2
 if (!requireNamespace("ggplot2", quietly = TRUE)) {
@@ -75,7 +76,9 @@ qq_plot <- ggplot(data.frame(x = budget_data), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### revenue
+
 ```{r movies}
 library(ggplot2)
 
@@ -101,7 +104,9 @@ qq_plot <- ggplot(data.frame(x = revenue_data), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### runtime
+
 ```{r movies}
 library(ggplot2)
 
@@ -127,33 +132,13 @@ qq_plot <- ggplot(data.frame(x = runtime_data), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### actorsPopularity
-```{r movies}
-library(ggplot2)
 
-# Tomemos 'actorsPopularity' como ejemplo
-actorsPopularity_data <- datos$actorsPopularity
+Debido a como vienen los valores es imposible generar un hisograma y un grfico qq por lo que este no se muestra
 
-# Crear histograma
-hist_plot <- ggplot(data.frame(x = actorsPopularity_data), aes(x = x)) +
-  geom_histogram(binwidth = 10, fill = "blue", color = "black", alpha = 0.7) +
-  labs(title = "Histograma de actorsPopularity",
-       x = "actorsPopularity",
-       y = "Frecuencia")
-
-# Crear QQ-Plot
-qq_plot <- ggplot(data.frame(x = actorsPopularity_data), aes(sample = x)) +
-  geom_qq() +
-  geom_qq_line(color = "blue") +
-  labs(title = "QQ-Plot de actorsPopularity",
-       x = "Cuantiles teóricos",
-       y = "Cuantiles observados")
-
-# Imprimir los gráficos
-print(hist_plot)
-print(qq_plot)
-```
 ### popularity
+
 ```{r movies}
 library(ggplot2)
 
@@ -179,7 +164,9 @@ qq_plot <- ggplot(data.frame(x = popularity_data), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### voteAvg
+
 ```{r movies}
 library(ggplot2)
 
@@ -205,7 +192,9 @@ qq_plot <- ggplot(data.frame(x = voteAvg_data), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### voteCount
+
 ```{r movies}
 library(ggplot2)
 
@@ -231,7 +220,9 @@ qq_plot <- ggplot(data.frame(x = voteCount_data), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### genresAmount
+
 ```{r movies}
 library(ggplot2)
 
@@ -257,7 +248,9 @@ qq_plot <- ggplot(data.frame(x = genresAmount_data), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### productionCoAmount
+
 ```{r movies}
 library(ggplot2)
 
@@ -283,7 +276,9 @@ qq_plot <- ggplot(data.frame(x = productionCoAmount_data), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### productionCountriesAmount
+
 ```{r movies}
 library(ggplot2)
 
@@ -308,7 +303,9 @@ qq_plot <- ggplot(data.frame(x = productionCountriesAmount_data), aes(sample = x
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### actorsAmount
+
 ```{r movies}
 library(ggplot2)
 
@@ -333,54 +330,21 @@ qq_plot <- ggplot(data.frame(x = actorsAmount_data ), aes(sample = x)) +
 print(hist_plot)
 print(qq_plot)
 ```
+
 ### castWomenAmount
-```{r movies}
-library(ggplot2)
-castWomenAmount_data <- datos$castWomenAmount
 
-# Crear histograma
-hist_plot <- ggplot(data.frame(x = castWomenAmount_data ), aes(x = x)) +
-  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
-  labs(title = "Histograma de Budget",
-       x = "castWomenAmount",
-       y = "Frecuencia")
+Debido a como vienen los valores es imposible generar un hisograma y un grfico qq por lo que este no se muestra
 
-# Crear QQ-Plot
-qq_plot <- ggplot(data.frame(x = castWomenAmount_data ), aes(sample = x)) +
-  geom_qq() +
-  geom_qq_line(color = "blue") +
-  labs(title = "QQ-Plot de Budget",
-       x = "Cuantiles teóricos",
-       y = "Cuantiles observados")
-
-# Imprimir los gráficos
-print(hist_plot)
-print(qq_plot)
-```
 ### castMenAmount
-```{r movies}
-library(ggplot2)
-castMenAmount_data <- datos$castMenAmount
 
-# Crear histograma
-hist_plot <- ggplot(data.frame(x = castMenAmount_data ), aes(x = x)) +
-  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
-  labs(title = "Histograma de castMenAmount",
-       x = "castWomenAmount",
-       y = "Frecuencia")
+Debido a como vienen los valores es imposible generar un hisograma y un grfico qq por lo que este no se muestra
 
-# Crear QQ-Plot
-qq_plot <- ggplot(data.frame(x = castMenAmount_data ), aes(sample = x)) +
-  geom_qq() +
-  geom_qq_line(color = "blue") +
-  labs(title = "QQ-Plot de castMenAmount",
-       x = "Cuantiles teóricos",
-       y = "Cuantiles observados")
 
-# Imprimir los gráficos
-print(hist_plot)
-print(qq_plot)
-```
+## Parrafo de variables cuantitativas
+
+
+
+
 ### Genres
 
 ```{r movies}
@@ -594,6 +558,7 @@ suppressWarnings({
 ## 4.Responda las siguientes preguntas:
 
 ### 4.1 ¿Cuáles son las 10 películas que contaron con más presupuesto?
+
 ```{r movies}
 # Instalar y cargar el paquete dplyr si aún no está instalado
 if (!requireNamespace("dplyr", quietly = TRUE)) {
@@ -609,7 +574,9 @@ top_10_presupuesto <- head(datos[order(-datos$budget), ], 10)
 # Imprimir el resultado
 print(top_10_presupuesto[, c("title", "budget")])
 ```
+
 ### 4.2 ¿Cuáles son las 10 películas que más ingresos tuvieron?
+
 ```{r movies}
 
 # Seleccionar las primeras 10 filas
@@ -619,7 +586,8 @@ top_10_ingresos <- head(datos[order(-datos$revenue), ], 10)
 print(top_10_ingresos[, c("title", "revenue")])
 ```
 
-### 4.3  ¿Cuál es la película que más votos tuvo?
+### 4.3 ¿Cuál es la película que más votos tuvo?
+
 ```{r movies}
 
 # Seleccionar las primeras 10 filas
@@ -628,7 +596,9 @@ top_voteCount <- head(datos[order(-datos$voteCount), ], 1)
 # Imprimir el resultado
 print(top_voteCount[, c("title", "voteCount")])
 ```
-### 4.4  ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios?
+
+### 4.4 ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios?
+
 ```{r movies}
 # Seleccionar la película con la peor calificación (voto promedio)
 worst_voteAvg <- datos[which.min(datos$voteAvg), c("title", "voteAvg")]
@@ -638,6 +608,7 @@ cat("La película con la peor calificación es:", worst_voteAvg$title, "con un v
 ```
 
 ### 4.5 ¿Cuántas películas se hicieron en cada año? ¿En qué año se hicieron más películas? Haga un gráfico de barras
+
 ```{r movies}
 # Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
 datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
@@ -661,6 +632,7 @@ barplot(peliculas_por_ano, main = "Número de Películas por Año", xlab = "Año
 ```
 
 ### 4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
+
 ```{r movies}
 # Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
 datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
