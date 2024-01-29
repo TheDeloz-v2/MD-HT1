@@ -333,17 +333,19 @@ print(qq_plot)
 
 ### castWomenAmount
 
-Debido a como vienen los valores es imposible generar un hisograma y un grfico qq por lo que este no se muestra
+Debido a como vienen los valores en formato string es imposible generar un hisograma y un gráfico qq por lo que este no se muestra
 
 ### castMenAmount
 
-Debido a como vienen los valores es imposible generar un hisograma y un grfico qq por lo que este no se muestra
-
+Debido a como vienen los valores en formato string es imposible generar un hisograma y un gráfico qq por lo que este no se muestra
 
 ## Parrafo de variables cuantitativas
 
+Respecto a los histogramas de las variables cuantitativas, se observa que muy pocas de ellas sigue una distribución normal y algunos de ellos no son posibles utilizarlos ya que son string
 
+Las variables que si cumplen con una distribución normal son: runtime, voteaverage y genresAmount. En estas variables las que poseen una distribución asimétrica positiva son runtime y genresAmount.
 
+La variable runtime posee una curtosis leptocúrtica, pero las variables voteaverage y genresAmount tienen una curtosis mesocúrtica.
 
 ### Genres
 
@@ -555,6 +557,10 @@ suppressWarnings({
 })
 ```
 
+## Parrafo de variables cualitativas
+
+En estas variables evidenciamos que poseemos variables las cuales al poseer la mayoria frecuencias de 1 no vale mucho la pena poseerlas, a pesar de ello se graficáron pero no eran relevantes ya que, como en las fechas, estas normalmente cada una de ellas tiene una frecuencia muy baja
+
 ## 4.Responda las siguientes preguntas:
 
 ### 4.1 ¿Cuáles son las 10 películas que contaron con más presupuesto?
@@ -567,12 +573,16 @@ if (!requireNamespace("dplyr", quietly = TRUE)) {
 
 library(dplyr)
 
-
 # Seleccionar las primeras 10 filas
-top_10_presupuesto <- head(datos[order(-datos$budget), ], 10)
+top_10_presupuesto <- head(dplyr::arrange(datos, desc(budget)), 10)
 
 # Imprimir el resultado
 print(top_10_presupuesto[, c("title", "budget")])
+
+for (i in 1:10) {
+  cat("Película:", top_10_presupuesto$title[i], "\t Budget:", top_10_presupuesto$budget[i], "\n")
+}
+
 ```
 
 ### 4.2 ¿Cuáles son las 10 películas que más ingresos tuvieron?
@@ -584,6 +594,10 @@ top_10_ingresos <- head(datos[order(-datos$revenue), ], 10)
 
 # Imprimir el resultado
 print(top_10_ingresos[, c("title", "revenue")])
+cat("\nTop 10 Películas con Mayor Ingreso:\n")
+for (i in 1:10) {
+  cat("Película:", top_10_ingresos$title[i], "\tIngreso:", top_10_ingresos$revenue[i], "\n")
+}
 ```
 
 ### 4.3 ¿Cuál es la película que más votos tuvo?
