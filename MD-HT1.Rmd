@@ -694,6 +694,21 @@ print(genero_principal_mas_comun)
 ### 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos?¿cuantas películas, en promedio, se han lanzado por mes?
 
 ### 4.14 ¿Cómo se correlacionan las calificaciones con el éxito comercial?
+```{r movies}
+# Seleccionar las primeras 10 filas con los campos 'title', 'revenue', 'voteAvg'
+top_10_revenue <- head(datos[order(-datos$revenue), c("title", "revenue", "voteAvg")], 15)
+
+# Calcular la correlación entre las calificaciones y los ingresos
+correlation <- cor(top_10_revenue$voteAvg, top_10_revenue$revenue)
+
+# Graficar la relación entre calificaciones y ingresos con la correlación
+ggplot(top_10_revenue, aes(x = voteAvg, y = revenue)) +
+  geom_point() +
+  geom_text(aes(label = paste("Correlación:", round(correlation, 2)), x = max(voteAvg), y = max(revenue)), vjust = 1, hjust = 1) +
+  labs(title = "Relación entre Calificaciones y Ingresos",
+       x = "Calificación Promedio",
+       y = "Ingresos")
+```
 
 ### 4.15 ¿A qué género principal pertenecen las películas más largas?
 ```{r movies}
