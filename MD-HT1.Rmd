@@ -692,6 +692,38 @@ print(genero_principal_mas_comun)
 ### 4.12 ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
 
 ### 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos?¿cuantas películas, en promedio, se han lanzado por mes?
+```{r movies}
+# Seleccionar las primeras 10 filas con los campos 'title', 'revenue' y el mes de 'releaseDate'
+top_20_revenue <- head(datos[order(-datos$revenue), c("title", "revenue", "releaseMonth")], 20)
+
+# Contar la frecuencia de lanzamientos por mes
+conteo_por_mes <- table(top_20_revenue$releaseMonth)
+
+# Crear gráfico de barras
+barplot(conteo_por_mes, main = "Lanzamientos con Mejores Ingresos por Mes", xlab = "Mes", ylab = "Número de Lanzamientos")
+
+```
+
+```{r movies}
+# Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
+datos$releaseMonth <- as.numeric(format(as.Date(datos$releaseDate), "%m"))
+
+# Crear tabla con el número de películas por mes
+peliculas_por_mes <- table(datos$releaseMonth)
+
+# Calcular el número total de años en el conjunto de datos
+num_anos <- length(unique(datos$releaseYear))
+
+# Calcular el promedio de películas por mes
+promedio_peliculas_por_mes <- peliculas_por_mes / num_anos
+
+# Imprimir el promedio de películas por mes
+cat("Promedio de películas por mes:\n")
+print(promedio_peliculas_por_mes)
+
+# Crear gráfico de barras
+barplot(promedio_peliculas_por_mes, main = "Promedio de Películas por Mes", xlab = "Mes", ylab = "Cantidad Promedio de Películas")
+```
 
 ### 4.14 ¿Cómo se correlacionan las calificaciones con el éxito comercial?
 ```{r movies}
