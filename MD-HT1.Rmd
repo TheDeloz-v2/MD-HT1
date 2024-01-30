@@ -741,6 +741,11 @@ hist(datos$runtime, main = "Distribución de Duraciones de Películas", xlab = "
 ```{r movies}
 # Crear diagrama de dispersión
 plot(datos$popularity, datos$voteAvg, main = "Relación entre Popularidad y Votaciones", xlab = "Popularidad", ylab = "Votación", pch = 16, col = "darkgreen")
+# Calcular el coeficiente de correlación
+correlation <- cor(datos$popularity, datos$voteAvg)
+
+# Imprimir el coeficiente de correlación
+print(paste("Coeficiente de correlación:", correlation, " gracias a esto podemos concluir que hay una relación muy débil entre la popularidad y las votaciones"))
 ```
 
 ### 5.3 Cual es la proporción de películas con y sin video disponible
