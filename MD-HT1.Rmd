@@ -645,6 +645,7 @@ cat("\nEn el año", ano_mas_peliculas, "se hicieron más películas.\n")
 barplot(peliculas_por_ano, main = "Número de Películas por Año", xlab = "Año", ylab = "Número de Películas")
 
 ```
+En el año 2021 se hicieron más películas. con un total de 816. Se nota que hay un crecimiento exponencial ya que entre más pasa el tiempo se realizan más peliculas
 
 ### 4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
 
@@ -678,6 +679,8 @@ print(genero_principal_top_20)
 cat("\nGénero Principal que Predomina en el Conjunto de Datos:\n")
 print(genero_principal_mas_comun)
 ```
+
+El género principal de las 20 películas es Drama seguido de Comedia y acción
 
 ### 4.7 ¿Las películas de qué genero principal obtuvieron mayores ganancias?
 ```{r movies}
