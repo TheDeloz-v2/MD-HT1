@@ -713,6 +713,32 @@ print(genre_counts)
 ```
 
 ### 4.8 ¿La cantidad de actores influye en los ingresos de las películas?¿se han hecho películas con más actores en los últimos años?
+```{r movies}
+actorAmount <- head(datos[order(-datos$actorsAmount), c("title", "actorsAmount", "revenue")], 100)
+
+# Filtrar los datos para quitar las observaciones con revenue vacía o igual a 0
+actorAmount_filtrados <- actorAmount %>%
+  filter(!is.na(revenue) & revenue != 0) %>%
+  slice(3:n())
+
+# Imprimir los datos filtrados
+print(actorAmount_filtrados)
+```
+```{r movies}
+
+# Calcular la correlación entre cantidad de actores y los ingresos
+correlation <- cor(actorAmount_filtrados$actorsAmount, actorAmount_filtrados$revenue)
+correlation
+
+# Diagrama de dispersión entre cantidad de actores y los ingresos
+ggplot(actorAmount_filtrados, aes(x = actorsAmount, y = revenue)) +
+  geom_point(alpha = 0.6) +
+  labs(title = "Diagrama de Dispersión entre Cantidad de Actores y los Ingresos", label = paste("Correlación:", round(correlation, 2)),
+       x = "Cantidad de Actores",
+       y = "Ingresos") +
+  theme_minimal()
+
+```
 
 ### 4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
 
