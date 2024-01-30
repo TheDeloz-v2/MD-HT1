@@ -680,6 +680,37 @@ print(genero_principal_mas_comun)
 ```
 
 ### 4.7 ¿Las películas de qué genero principal obtuvieron mayores ganancias?
+```{r movies}
+# Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
+top_10_revenue <- head(datos[order(-datos$revenue), c("title", "genres")], 15)
+
+# Contar la frecuencia de cada género
+genre_counts <- top_10_revenue   %>%
+  mutate(first_genre = str_extract(genres, "^[^|]+")) %>%
+  count(first_genre) %>%
+  arrange(desc(n))
+
+
+print(genre_counts)
+```
+```{r movies}
+# Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
+top_10_revenue <- head(datos[order(-datos$revenue), c("title", "genres", "revenue")], 100)
+
+# Seleccionar las películas con mayor "revenue" por género
+top_by_genre <- top_10_revenue %>%
+  group_by(first_genre = str_extract(genres, "^[^|]+")) %>%
+  top_n(1, revenue) %>%
+  ungroup()
+
+# Contar la frecuencia de cada género
+genre_counts <- top_by_genre %>%
+  count(first_genre, top_title = title, revenue=revenue) %>%
+  arrange(desc(revenue))
+
+print(genre_counts)
+
+```
 
 ### 4.8 ¿La cantidad de actores influye en los ingresos de las películas?¿se han hecho películas con más actores en los últimos años?
 
