@@ -690,6 +690,22 @@ print(genero_principal_mas_comun)
 ### 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión
 
 ### 4.12 ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
+```{r movies}
+
+# Convertir la fecha de lanzamiento a formato de fecha y extraer el mes
+datos$releaseMonth <- as.numeric(format(as.Date(datos$releaseDate), "%m"))
+
+# Calcular el promedio de ingresos por mes
+ingresos_promedio_por_mes <- aggregate(revenue ~ releaseMonth, data = datos, FUN = mean)
+
+# Crear gráfico de barras
+ggplot(ingresos_promedio_por_mes, aes(x = factor(releaseMonth), y = revenue)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Ingresos Promedio por Mes de Lanzamiento",
+       x = "Mes de Lanzamiento",
+       y = "Ingresos Promedio")
+
+```
 
 ### 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos?¿cuantas películas, en promedio, se han lanzado por mes?
 ```{r movies}
