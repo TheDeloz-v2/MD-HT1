@@ -688,6 +688,19 @@ print(genero_principal_mas_comun)
 ### 4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
 
 ### 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión
+```{r movies}
+# Calcular la correlación entre presupuestos y ingresos
+correlation <- cor(datos$budget, datos$revenue)
+correlation
+
+# Diagrama de dispersión entre presupuestos y ingresos
+ggplot(datos, aes(x = budget, y = revenue)) +
+  geom_point(alpha = 0.6) +
+  labs(title = "Diagrama de Dispersión entre Presupuestos y Ingresos", label = paste("Correlación:", round(correlation, 2)),
+       x = "Presupuesto",
+       y = "Ingresos") +
+  theme_minimal()
+```
 
 ### 4.12 ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
 ```{r movies}
