@@ -686,6 +686,17 @@ print(genero_principal_mas_comun)
 ### 4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
 
 ### 4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
+```{r movies}
+# Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
+top_10_rating <- head(datos[order(-datos$voteAvg), c("title", "voteAvg", "director")], 20)
+
+# Filtrar las películas para quitar aquellas que no tienen registro de director
+top_10_rating <- top_10_rating %>%
+  filter(!is.na(director) & director != "")
+
+print(top_10_rating)
+
+```
 
 ### 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión
 ```{r movies}
