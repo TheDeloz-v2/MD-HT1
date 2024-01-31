@@ -9,6 +9,31 @@ repo: https://github.com/TheDeloz-v2/MD-HT1.git
 
 ```{r setup, include=FALSE}
 datos <- read.csv("movies.csv")
+
+# Cargar la librería ggplot2
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  install.packages("ggplot2")
+}
+library(ggplot2)
+
+# Cargar la librería dplyr
+if (!requireNamespace("dplyr", quietly = TRUE)) {
+  install.packages("dplyr")
+}
+library(dplyr)
+
+# Cargar la librería tidyr
+if (!requireNamespace("tidyr", quietly = TRUE)) {
+  install.packages("tidyr")
+}
+library(tidyr)
+
+# Cargar la librería stringr
+if (!requireNamespace("stringr", quietly = TRUE)) {
+  install.packages("stringr")
+}
+library(stringr)
+
 ```
 
 ## 1. Resumen de nuestro conjunto de datos
