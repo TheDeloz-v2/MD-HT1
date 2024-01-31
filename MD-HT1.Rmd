@@ -972,7 +972,6 @@ de drama es el que predomina dentro de las 20 películas más largas.
 # Crear histograma
 hist(datos$runtime, main = "Distribución de Duraciones de Películas", xlab = "Duración en min", ylab = "Frecuencia", col = "skyblue", border = "black")
 
-
 ```
 
 ### 5.2 Existe una relación entre la popularidad y las votaciones
@@ -986,13 +985,79 @@ correlation <- cor(datos$popularity, datos$voteAvg)
 print(paste("Coeficiente de correlación:", correlation, " gracias a esto podemos concluir que hay una relación muy débil entre la popularidad y las votaciones"))
 ```
 
-### 5.3 Cual es la proporción de películas con y sin video disponible
+### 5.3 Existe alguna relacion entre que exista un video promocional de la pelicula y la popularidad que esta alcanza?
 ```{r movies}
-# Crear gráfico de pastel
-pie(table(datos$video), main = "Proporción de Películas con Video Disponible", col = c("lightgreen", "lightpink"))
+
+# Calcular la correlación entre la existencia de un video promocional y la popularidad
+correlation <- cor(datos$video, datos$popularity)
+correlation
+
+# Calcular la media de popularidad para películas con y sin video promocional
+mean_popularity <- aggregate(popularity ~ video, data = datos, FUN = mean)
+
+# Crear un gráfico de barras para comparar la popularidad entre películas con y sin video promocional
+ggplot(mean_popularity, aes(x = video, y = popularity, fill = video)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Comparación de Popularidad con y sin Video Promocional",
+       x = "Video Promocional",
+       y = "Popularidad Promedio") +
+  theme_minimal()
+
+
 ```
 
-### 5.4 
+Tanto el valor del índice de correlación como el gráfico generado demuestran que 
+no existe ningún tipo de relación entre que una película tenga videos promocionales
+y la popularidad que posee.
+
+### 5.4 ¿Cuál es la proporción de películas según la cantidad de géneros que posee? ¿Y cuál es la que más tiene?
+``` {r movies}
+# Seleccionar las primeras 15 filas con los campos 'title', 'revenue', 'voteAvg'
+top_10_revenue <- head(datos[order(-datos$genresAmount), c("title", "genresAmount")], 1)
+print(top_10_revenue)
+```
+
+La película que más géneros tiene es Live Spectale NARUTO -Song of the Akatsuki-
+con un total de 16 géneros
 
 ``` {r movies}
+datos <- read.csv("movies.csv")
+
+# Crear gráfico de barras
+barplot(datos$genresAmount, main = "Promedio de Películas por Mes", xlab = "Mes", ylab = "Cantidad Promedio de Películas")
+
 ```
+
+En el gráfico se puede observar la generalidad de cantidad de génerospor película, 
+el dato que sobresale es el máximo anteriormente expuesto "Live Spectale NARUTO -Song of the Akatsuki-", 
+las demás permanecen dentro de un rango promedio entre 3 y 7 géneros.
+
+### 5.5 ¿Existe algun tipo de relación entre el presupuesto y la cantidad de países de grabación?
+``` {r movies}
+# Convertir las columnas productionCountriesAmount y budget a formato numérico
+datos$actorsAmount <- as.numeric(datos$productionCountriesAmount)
+datos$runtime <- as.numeric(datos$budget)
+
+# Excluir filas con valores de 0 o NA
+datos_filtrados <- subset(datos, productionCountriesAmount != 0 & budget != 0 & !is.na(productionCountriesAmount) & !is.na(budget))
+
+# Calcular la correlación entre productionCountriesAmount y budget en los datos filtrados
+correlation <- cor(datos_filtrados$productionCountriesAmount, datos_filtrados$budget)
+correlation
+
+# Diagrama de dispersión entre productionCountriesAmount y budget en los datos filtrados
+ggplot(datos_filtrados, aes(x = budget, y = productionCountriesAmount)) +
+  geom_point(alpha = 0.6) +
+  labs(title = "Diagrama de Dispersión entre Cantidad de Países de Grabación y Presupuesto",
+       label = paste("Correlación:", round(correlation, 2)),
+       x = "Presupuesto",
+       y = "Cantidad de Países") +
+  scale_y_continuous(limits = c(0, max(datos_filtrados$productionCountriesAmount))) +
+  theme_minimal()
+
+```
+No existe ningún tipo de relación entre el presupuesto y la cantidad de países de grabación, 
+esto se ve corroborado por nuestro índice y el gráfico generado. Este último demuestra
+incluso que las pelícunas grabadas en una mayor cantidad de países no poseían un 
+presupuesto demasiado grande en comparación a otras películas.
+
