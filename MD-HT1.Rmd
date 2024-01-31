@@ -1066,3 +1066,22 @@ esto se ve corroborado por nuestro índice y el gráfico generado. Este último 
 incluso que las pelícunas grabadas en una mayor cantidad de países no poseían un 
 presupuesto demasiado grande en comparación a otras películas.
 
+### 5.6 ¿Cuántas películas se han grabado para cada idioma?
+``` {r movies}
+
+# Contabilizar películas y agruparlas según su idioma original
+frecuencia_idiomas <- table(datos$originalLanguage)
+
+print(frecuencia_idiomas)
+
+# Generar el gráfico de barras
+barplot(frecuencia_idiomas, 
+        main = "Cantidad de Películas por Idioma Original",
+        xlab = "Idioma Original",
+        ylab = "Cantidad de Películas")
+
+```
+
+Cómo se puede observar en la gráfica de barras generada, el idioma original con más
+cantidad de películas es el inglés con un total de 7772 películas, seguido del japonés
+con 644 películas, y del español con 425 películas respectivamente.
