@@ -73,7 +73,7 @@ kable(tabla_columnas_valores, format = "html", row.names = TRUE)
 
 ### budget
 
-```{r }
+```{r, warning=FALSE}
 # Descargamos ggplot2
 if (!requireNamespace("ggplot2", quietly = TRUE)) {
   install.packages("ggplot2")
@@ -105,7 +105,7 @@ print(qq_plot)
 
 ### revenue
 
-```{r }
+```{r, warning=FALSE }
 library(ggplot2)
 
 # Tomemos 'revenue' como ejemplo
@@ -133,7 +133,7 @@ print(qq_plot)
 
 ### runtime
 
-```{r }
+```{r , warning=FALSE}
 library(ggplot2)
 
 # Tomemos 'runtime' como ejemplo
@@ -165,7 +165,7 @@ Debido a como vienen los valores es imposible generar un hisograma y un grfico q
 
 ### popularity
 
-```{r }
+```{r, warning=FALSE }
 library(ggplot2)
 
 # Tomemos 'popularity' como ejemplo
@@ -193,7 +193,7 @@ print(qq_plot)
 
 ### voteAvg
 
-```{r }
+```{r, warning=FALSE }
 library(ggplot2)
 
 # Tomemos 'voteAvg' como ejemplo
@@ -221,7 +221,7 @@ print(qq_plot)
 
 ### voteCount
 
-```{r }
+```{r, warning=FALSE }
 library(ggplot2)
 
 # Tomemos 'voteCount' como ejemplo
@@ -249,7 +249,7 @@ print(qq_plot)
 
 ### genresAmount
 
-```{r }
+```{r, warning=FALSE }
 library(ggplot2)
 
 # Tomemos 'genresAmount' como ejemplo
@@ -277,7 +277,7 @@ print(qq_plot)
 
 ### productionCoAmount
 
-```{r }
+```{r, warning=FALSE }
 library(ggplot2)
 
 # Tomemos 'productionCoAmount' como ejemplo
@@ -305,7 +305,7 @@ print(qq_plot)
 
 ### productionCountriesAmount
 
-```{r }
+```{r, warning=FALSE }
 library(ggplot2)
 
 productionCountriesAmount_data <- datos$productionCountriesAmount
@@ -332,7 +332,7 @@ print(qq_plot)
 
 ### actorsAmount
 
-```{r }
+```{r, warning=FALSE }
 library(ggplot2)
 
 actorsAmount_data <- datos$actorsAmount
@@ -375,7 +375,7 @@ La variable runtime posee una curtosis leptocúrtica, pero las variables voteave
 
 ### Genres
 
-```{r }
+```{r, warning=FALSE }
 # Crear tabla de frecuencias para la variable "genres"
 genres_sep <- strsplit(as.character(datos$genres), "\\|")
 genres_sep <- data.frame(genres = unlist(genres_sep))
@@ -392,7 +392,7 @@ suppressWarnings({
 
 ### productionCompany
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "productionCompany"
 productionCompany_sep <- strsplit(as.character(datos$productionCompany), "\\|")
 productionCompany_sep <- data.frame(productionCompany = unlist(productionCompany_sep))
@@ -415,7 +415,7 @@ suppressWarnings({
 
 ### productionCompanyCountry
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "productionCompanyCountry"
 productionCompanyCountry_sep <- strsplit(as.character(datos$productionCompanyCountry), "\\|")
 productionCompanyCountry_sep <- data.frame(productionCompanyCountry = unlist(productionCompanyCountry_sep))
@@ -432,7 +432,7 @@ suppressWarnings({
 
 ### productionCountry
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "productionCountry"
 productionCountry_sep <- strsplit(as.character(datos$productionCountry), "\\|")
 productionCountry_sep <- data.frame(productionCountry = unlist(productionCountry_sep))
@@ -449,7 +449,7 @@ suppressWarnings({
 
 ### video
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "video"
 video_sep <- strsplit(as.character(datos$video), "\\|")
 video_sep <- data.frame(video = unlist(video_sep))
@@ -466,7 +466,7 @@ suppressWarnings({
 
 ### director
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "director"
 director_sep <- strsplit(as.character(datos$director), "\\|")
 director_sep <- data.frame(director = unlist(director_sep))
@@ -483,7 +483,7 @@ suppressWarnings({
 
 ### actors
 
-```{r  , echo=FALSE}
+```{r, warning=FALSE  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "actors"
 actors_sep <- strsplit(as.character(datos$actors), "\\|")
 actors_sep <- data.frame(actors = unlist(actors_sep))
@@ -500,7 +500,7 @@ suppressWarnings({
 
 ### actorsCharacter
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "actorsCharacter"
 actorsCharacter_sep <- strsplit(as.character(datos$actorsCharacter), "\\|")
 actorsCharacter_sep <- data.frame(actorsCharacter = unlist(actorsCharacter_sep))
@@ -517,7 +517,7 @@ suppressWarnings({
 
 ### originalTitle
 
-```{r  , echo=FALSE}
+```{r, warning=FALSE  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "originalTitle"
 originalTitle_sep <- strsplit(as.character(datos$originalTitle), "\\|")
 originalTitle_sep <- data.frame(originalTitle = unlist(originalTitle_sep))
@@ -534,7 +534,7 @@ suppressWarnings({
 
 ### title
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "title"
 title_sep <- strsplit(as.character(datos$title), "\\|")
 title_sep <- data.frame(title = unlist(title_sep))
@@ -551,7 +551,7 @@ suppressWarnings({
 
 ### originalLanguage
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "originalLanguage"
 originalLanguage_sep <- strsplit(as.character(datos$originalLanguage), "\\|")
 originalLanguage_sep <- data.frame(originalLanguage = unlist(originalLanguage_sep))
@@ -568,7 +568,7 @@ suppressWarnings({
 
 ### releaseDate
 
-```{r  , echo=FALSE}
+```{r , warning=FALSE , echo=FALSE}
 # Crear tabla de frecuencias para la variable "releaseDate"
 releaseDate_sep <- strsplit(as.character(datos$releaseDate), "\\|")
 releaseDate_sep <- data.frame(releaseDate = unlist(releaseDate_sep))
