@@ -38,13 +38,13 @@ library(stringr)
 
 ## 1. Resumen de nuestro conjunto de datos
 
-```{r movies}
+```{r }
 summary(datos)
 ```
 
 ## 2. Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
 
-```{r movies}
+```{r }
 if (!requireNamespace("knitr", quietly = TRUE)) {
   install.packages("knitr")
 }
@@ -73,7 +73,7 @@ kable(tabla_columnas_valores, format = "html", row.names = TRUE)
 
 ### budget
 
-```{r movies}
+```{r }
 # Descargamos ggplot2
 if (!requireNamespace("ggplot2", quietly = TRUE)) {
   install.packages("ggplot2")
@@ -105,7 +105,7 @@ print(qq_plot)
 
 ### revenue
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 # Tomemos 'revenue' como ejemplo
@@ -133,7 +133,7 @@ print(qq_plot)
 
 ### runtime
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 # Tomemos 'runtime' como ejemplo
@@ -165,7 +165,7 @@ Debido a como vienen los valores es imposible generar un hisograma y un grfico q
 
 ### popularity
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 # Tomemos 'popularity' como ejemplo
@@ -193,7 +193,7 @@ print(qq_plot)
 
 ### voteAvg
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 # Tomemos 'voteAvg' como ejemplo
@@ -221,7 +221,7 @@ print(qq_plot)
 
 ### voteCount
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 # Tomemos 'voteCount' como ejemplo
@@ -249,7 +249,7 @@ print(qq_plot)
 
 ### genresAmount
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 # Tomemos 'genresAmount' como ejemplo
@@ -277,7 +277,7 @@ print(qq_plot)
 
 ### productionCoAmount
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 # Tomemos 'productionCoAmount' como ejemplo
@@ -305,7 +305,7 @@ print(qq_plot)
 
 ### productionCountriesAmount
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 productionCountriesAmount_data <- datos$productionCountriesAmount
@@ -332,7 +332,7 @@ print(qq_plot)
 
 ### actorsAmount
 
-```{r movies}
+```{r }
 library(ggplot2)
 
 actorsAmount_data <- datos$actorsAmount
@@ -375,7 +375,7 @@ La variable runtime posee una curtosis leptocúrtica, pero las variables voteave
 
 ### Genres
 
-```{r movies}
+```{r }
 # Crear tabla de frecuencias para la variable "genres"
 genres_sep <- strsplit(as.character(datos$genres), "\\|")
 genres_sep <- data.frame(genres = unlist(genres_sep))
@@ -392,7 +392,7 @@ suppressWarnings({
 
 ### productionCompany
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "productionCompany"
 productionCompany_sep <- strsplit(as.character(datos$productionCompany), "\\|")
 productionCompany_sep <- data.frame(productionCompany = unlist(productionCompany_sep))
@@ -415,7 +415,7 @@ suppressWarnings({
 
 ### productionCompanyCountry
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "productionCompanyCountry"
 productionCompanyCountry_sep <- strsplit(as.character(datos$productionCompanyCountry), "\\|")
 productionCompanyCountry_sep <- data.frame(productionCompanyCountry = unlist(productionCompanyCountry_sep))
@@ -432,7 +432,7 @@ suppressWarnings({
 
 ### productionCountry
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "productionCountry"
 productionCountry_sep <- strsplit(as.character(datos$productionCountry), "\\|")
 productionCountry_sep <- data.frame(productionCountry = unlist(productionCountry_sep))
@@ -449,7 +449,7 @@ suppressWarnings({
 
 ### video
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "video"
 video_sep <- strsplit(as.character(datos$video), "\\|")
 video_sep <- data.frame(video = unlist(video_sep))
@@ -466,7 +466,7 @@ suppressWarnings({
 
 ### director
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "director"
 director_sep <- strsplit(as.character(datos$director), "\\|")
 director_sep <- data.frame(director = unlist(director_sep))
@@ -483,7 +483,7 @@ suppressWarnings({
 
 ### actors
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "actors"
 actors_sep <- strsplit(as.character(datos$actors), "\\|")
 actors_sep <- data.frame(actors = unlist(actors_sep))
@@ -500,7 +500,7 @@ suppressWarnings({
 
 ### actorsCharacter
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "actorsCharacter"
 actorsCharacter_sep <- strsplit(as.character(datos$actorsCharacter), "\\|")
 actorsCharacter_sep <- data.frame(actorsCharacter = unlist(actorsCharacter_sep))
@@ -517,7 +517,7 @@ suppressWarnings({
 
 ### originalTitle
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "originalTitle"
 originalTitle_sep <- strsplit(as.character(datos$originalTitle), "\\|")
 originalTitle_sep <- data.frame(originalTitle = unlist(originalTitle_sep))
@@ -534,7 +534,7 @@ suppressWarnings({
 
 ### title
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "title"
 title_sep <- strsplit(as.character(datos$title), "\\|")
 title_sep <- data.frame(title = unlist(title_sep))
@@ -551,7 +551,7 @@ suppressWarnings({
 
 ### originalLanguage
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "originalLanguage"
 originalLanguage_sep <- strsplit(as.character(datos$originalLanguage), "\\|")
 originalLanguage_sep <- data.frame(originalLanguage = unlist(originalLanguage_sep))
@@ -568,7 +568,7 @@ suppressWarnings({
 
 ### releaseDate
 
-```{r movies , echo=FALSE}
+```{r  , echo=FALSE}
 # Crear tabla de frecuencias para la variable "releaseDate"
 releaseDate_sep <- strsplit(as.character(datos$releaseDate), "\\|")
 releaseDate_sep <- data.frame(releaseDate = unlist(releaseDate_sep))
@@ -591,7 +591,7 @@ En estas variables evidenciamos que poseemos variables las cuales al poseer la m
 
 ### 4.1 ¿Cuáles son las 10 películas que contaron con más presupuesto?
 
-```{r movies}
+```{r }
 # Instalar y cargar el paquete dplyr si aún no está instalado
 if (!requireNamespace("dplyr", quietly = TRUE)) {
   install.packages("dplyr")
@@ -613,7 +613,7 @@ for (i in 1:10) {
 
 ### 4.2 ¿Cuáles son las 10 películas que más ingresos tuvieron?
 
-```{r movies}
+```{r }
 
 # Seleccionar las primeras 10 filas
 top_10_ingresos <- head(datos[order(-datos$revenue), ], 10)
@@ -628,7 +628,7 @@ for (i in 1:10) {
 
 ### 4.3 ¿Cuál es la película que más votos tuvo?
 
-```{r movies}
+```{r }
 
 # Seleccionar las primeras 10 filas
 top_voteCount <- head(datos[order(-datos$voteCount), ], 1)
@@ -639,7 +639,7 @@ print(top_voteCount[, c("title", "voteCount")])
 
 ### 4.4 ¿Cuál es la peor película de acuerdo a los votos de todos los usuarios?
 
-```{r movies}
+```{r }
 # Seleccionar la película con la peor calificación (voto promedio)
 worst_voteAvg <- datos[which.min(datos$voteAvg), c("title", "voteAvg")]
 
@@ -649,7 +649,7 @@ cat("La película con la peor calificación es:", worst_voteAvg$title, "con un v
 
 ### 4.5 ¿Cuántas películas se hicieron en cada año? ¿En qué año se hicieron más películas? Haga un gráfico de barras
 
-```{r movies}
+```{r }
 # Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
 datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
 
@@ -674,7 +674,7 @@ En el año 2021 se hicieron más películas. con un total de 816. Se nota que ha
 
 ### 4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
 
-```{r movies}
+```{r }
 # Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
 datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
 
@@ -709,7 +709,7 @@ El género principal de las 20 películas es Drama seguido de Comedia y acción
 
 
 ### 4.7 ¿Las películas de qué genero principal obtuvieron mayores ganancias?
-```{r movies}
+```{r }
 # Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
 top_10_revenue <- head(datos[order(-datos$revenue), c("title", "genres")], 15)
 
@@ -727,7 +727,7 @@ Interpretando la pregunta como el conteo de los géneros de las películas con m
 ingresos, las de acción son las lideran el conteo con un total de 7, seguidas de las
 de aventura con 3, ciencia ficción con 2 y tanto drama, familia y fantasía con 1.
 
-```{r movies}
+```{r }
 # Seleccionar las primeras 10 filas
 top_10_revenue <- head(datos[order(-datos$revenue), c("title", "genres", "revenue")], 100)
 
@@ -752,7 +752,7 @@ existe una gran diferencia, por lo que es posible decir que al menos los 8 prime
 puestos pertenecen también a los puestos del top ingresos globales.
 
 ### 4.8 ¿La cantidad de actores influye en los ingresos de las películas?¿se han hecho películas con más actores en los últimos años?
-```{r movies}
+```{r }
 # Obtener el top 100 de peliculas con más cantidad de actores
 actorAmount <- head(datos[order(-datos$actorsAmount), c("title", "actorsAmount", "revenue")], 100)
 
@@ -765,7 +765,7 @@ actorAmount_filtrados <- actorAmount %>%
 print(actorAmount_filtrados)
 ```
 
-```{r movies}
+```{r }
 
 # Calcular la correlación entre cantidad de actores y los ingresos
 correlation <- cor(actorAmount_filtrados$actorsAmount, actorAmount_filtrados$revenue)
@@ -786,7 +786,7 @@ la cantidad de actores y los ingresos de las películas, no existe como tal una
 relación entre estas variables, por lo que la cantidad de actores no influye en 
 los ingresos de las películas.
 
-```{r movies}
+```{r }
 
 datos <- read.csv("movies.csv")
 
@@ -808,7 +808,7 @@ crecimiento constante, ya que a partir de ahí han habido años con más o menos
 cantidad sin mostrar ningún patrón aparente.
 
 ### 4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
-```{r movies}
+```{r }
 
 datos <- read.csv("movies.csv")
 
@@ -843,8 +843,8 @@ actores y actrices con la popularidad e ingresos de las películas.
 
 
 ### 4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
-```{r movies}
-
+```{r }
+datos <- read.csv("movies.csv")
 # Seleccionar las primeras 20 filas segun la calificacion promedio de la pelicula
 top_10_rating <- head(datos[order(-datos$voteAvg), c("title", "voteAvg", "director")], 20)
 
@@ -859,7 +859,7 @@ En la tabla generada se muestran los directores de las 20 películas mejor calif
 
 
 ### 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión
-```{r movies}
+```{r }
 # Calcular la correlación entre presupuestos y ingresos
 correlation <- cor(datos$budget, datos$revenue)
 correlation
@@ -880,7 +880,7 @@ correlación generado, pues este siendo 0.76 se mantiene dentro de un rango dond
 es aceptable indicar correlación.
 
 ### 4.12 ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
-```{r movies}
+```{r }
 
 # Convertir la fecha de lanzamiento a formato de fecha y extraer el mes
 datos$releaseMonth <- as.numeric(format(as.Date(datos$releaseDate), "%m"))
@@ -905,7 +905,7 @@ estos meses pueden considerarse como vacacionales.
 Los meses con menor promedio de ingresos son septiembre, enero, agosto y octubre.
 
 ### 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos? ¿cuantas películas, en promedio, se han lanzado por mes?
-```{r movies}
+```{r }
 # Convertir la fecha de lanzamiento a formato de fecha y extraer el mes
 datos$releaseMonth <- as.numeric(format(as.Date(datos$releaseDate), "%m"))
 
@@ -925,7 +925,7 @@ principalmente en el mes de abril, seguido de diciembre, junio y noviembre. Esta
 que ningúna película dentro del top de ingresos se ha estrenado en enero, mayo, agosto, septiembre ni
 octubre.
 
-```{r movies}
+```{r }
 # Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
 datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
 
@@ -954,7 +954,7 @@ los años. Los meses con una mayor cantidad de películas estrenadas son septiem
 octubre con un promedio de 10 películas.
 
 ### 4.14 ¿Cómo se correlacionan las calificaciones con el éxito comercial?
-```{r movies}
+```{r }
 # Seleccionar las primeras 15 filas con los campos 'title', 'revenue', 'voteAvg'
 top_10_revenue <- head(datos[order(-datos$revenue), c("title", "revenue", "voteAvg")], 15)
 
@@ -971,7 +971,7 @@ ggplot(top_10_revenue, aes(x = voteAvg, y = revenue)) +
 ```
 
 ### 4.15 ¿A qué género principal pertenecen las películas más largas?
-```{r movies}
+```{r }
 # Seleccionar las primeras 20 filas con las peliculas mas largas
 top_10_runtime <- head(datos[order(-datos$runtime), c("title", "genres")], 20)
 
@@ -993,7 +993,7 @@ de drama es el que predomina dentro de las 20 películas más largas.
 
 ### 5.1 Cómo se distribuye la duración de las peliculas
 
-```{r movies}
+```{r }
 # Definir límites deseados para el eje x
 limites_x <- c(0, 200)
 
@@ -1004,7 +1004,7 @@ plot(datos$runtime, datos$revenue, main = "Relación entre Duración y Ventas de
 El gráfico de dispersión generado ofrece una perspectiva reveladora sobre la relación entre la duración de las películas y sus ventas en el conjunto de datos. Al observar el gráfico, podemos identificar patrones o tendencias que podrían indicar cómo el rango de 100 a 150 de duración están asociados con niveles bastante altos en las ventas  en la industria cinematográfica. La dispersión de puntos a lo largo de los ejes x e y proporciona una representación visual de la variabilidad en las duraciones de las películas y las ventas asociadas. Los datos revelan que una duración óptima de las películas para tener un mayor margen de ganacias se encuentra entre los 100 a los 150 minutos y como se evidencia la mayoría de las películas se encuentran en este a pesar de no haber tenido ganancias.
 
 ### 5.2 Existe una relación entre la popularidad y las votaciones
-```{r movies}
+```{r }
 # Crear diagrama de dispersión
 plot(datos$voteAvg,datos$popularity, main = "Relación entre Popularidad y Votaciones", xlab = "Votación", ylab = "Popularidad", pch = 16, col = "darkgreen")
 # Calcular el coeficiente de correlación
@@ -1016,7 +1016,7 @@ print(paste("Coeficiente de correlación:", correlation, " gracias a esto podemo
 El gráfico de dispersión generado ofrece una perspectiva reveladora sobre la relación entre la popularidad de las películas y sus punteos en las votacines en el conjunto de datos. Al observar el gráfico, podemos identificar patrones o tendencias que podrían indicar cómo el rango de 5 a 8 de votación están asociados con niveles bastante altos en la popularidad  en la industria cinematográfica.Los datos revelan que si la película es popular y posee un gran público el promedio de los votos es normalmente entre  5 a 8 puntos ya que al tener un público variado este poseera distintas críticas y no permitirá que se tengan notas tan altas como en los puntos donde la popularidad es muy baja y sesga los datos a muy altos o muy bajos debido a la cantidad de público que fue a visualizarla.
 
 ### 5.3 Existe alguna relacion entre que exista un video promocional de la pelicula y la popularidad que esta alcanza?
-```{r movies}
+```{r }
 
 # Calcular la correlación entre la existencia de un video promocional y la popularidad
 correlation <- cor(datos$video, datos$popularity)
@@ -1041,7 +1041,7 @@ no existe ningún tipo de relación entre que una película tenga videos promoci
 y la popularidad que posee.
 
 ### 5.4 ¿Cuál es la proporción de películas según la cantidad de géneros que posee? ¿Y cuál es la que más tiene?
-``` {r movies}
+``` {r }
 # Seleccionar las primeras 15 filas con los campos 'title', 'revenue', 'voteAvg'
 top_10_revenue <- head(datos[order(-datos$genresAmount), c("title", "genresAmount")], 1)
 print(top_10_revenue)
@@ -1050,7 +1050,7 @@ print(top_10_revenue)
 La película que más géneros tiene es Live Spectale NARUTO -Song of the Akatsuki-
 con un total de 16 géneros
 
-``` {r movies}
+``` {r }
 datos <- read.csv("movies.csv")
 
 # Crear gráfico de barras
@@ -1063,7 +1063,7 @@ el dato que sobresale es el máximo anteriormente expuesto "Live Spectale NARUTO
 las demás permanecen dentro de un rango promedio entre 3 y 7 géneros.
 
 ### 5.5 ¿Existe algun tipo de relación entre el presupuesto y la cantidad de países de grabación?
-``` {r movies}
+``` {r }
 # Convertir las columnas productionCountriesAmount y budget a formato numérico
 datos$actorsAmount <- as.numeric(datos$productionCountriesAmount)
 datos$runtime <- as.numeric(datos$budget)
@@ -1092,7 +1092,7 @@ incluso que las pelícunas grabadas en una mayor cantidad de países no poseían
 presupuesto demasiado grande en comparación a otras películas.
 
 ### 5.6 ¿Cuántas películas se han grabado para cada idioma?
-``` {r movies}
+``` {r }
 
 # Contabilizar películas y agruparlas según su idioma original
 frecuencia_idiomas <- table(datos$originalLanguage)
