@@ -682,6 +682,7 @@ print(genero_principal_mas_comun)
 
 El género principal de las 20 películas es Drama seguido de Comedia y acción
 
+
 ### 4.7 ¿Las películas de qué genero principal obtuvieron mayores ganancias?
 ```{r movies}
 # Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
@@ -696,8 +697,13 @@ genre_counts <- top_10_revenue   %>%
 
 print(genre_counts)
 ```
+
+Interpretando la pregunta como el conteo de los géneros de las películas con mayores
+ingresos, las de acción son las lideran el conteo con un total de 7, seguidas de las
+de aventura con 3, ciencia ficción con 2 y tanto drama, familia y fantasía con 1.
+
 ```{r movies}
-# Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
+# Seleccionar las primeras 10 filas
 top_10_revenue <- head(datos[order(-datos$revenue), c("title", "genres", "revenue")], 100)
 
 # Seleccionar las películas con mayor "revenue" por género
@@ -715,8 +721,14 @@ print(genre_counts)
 
 ```
 
+Interpretando la pregunta como obtener de cada género la película con mayor ingreso, 
+esta tabla muestra los resultados. Es notable que entre los primeros puestos no 
+existe una gran diferencia, por lo que es posible decir que al menos los 8 primeros 
+puestos pertenecen también a los puestos del top ingresos globales.
+
 ### 4.8 ¿La cantidad de actores influye en los ingresos de las películas?¿se han hecho películas con más actores en los últimos años?
 ```{r movies}
+# Obtener el top 100 de peliculas con más cantidad de actores
 actorAmount <- head(datos[order(-datos$actorsAmount), c("title", "actorsAmount", "revenue")], 100)
 
 # Filtrar los datos para quitar las observaciones con revenue vacía o igual a 0
@@ -727,6 +739,7 @@ actorAmount_filtrados <- actorAmount %>%
 # Imprimir los datos filtrados
 print(actorAmount_filtrados)
 ```
+
 ```{r movies}
 
 # Calcular la correlación entre cantidad de actores y los ingresos
@@ -743,11 +756,71 @@ ggplot(actorAmount_filtrados, aes(x = actorsAmount, y = revenue)) +
 
 ```
 
+Como tal, según nuestro diagrama de dispersión y el índice de correlación entre 
+la cantidad de actores y los ingresos de las películas, no existe como tal una 
+relación entre estas variables, por lo que la cantidad de actores no influye en 
+los ingresos de las películas.
+
+```{r movies}
+
+datos <- read.csv("movies.csv")
+
+# Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
+datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
+
+# Calcular la media de actores por película para cada año
+media_actores_por_año <- aggregate(actorsAmount ~ releaseYear, data = datos, FUN = mean)
+
+# Crear una gráfica de barras
+barplot(media_actores_por_año$actorsAmount, names.arg = media_actores_por_año$releaseYear, 
+        main = "Media de Actores por Película por Año", xlab = "Año", ylab = "Media de Actores por Película")
+
+```
+
+Según el gráfico, se observa que a partir de aproximadamente el año 2000 
+se han hecho películas con más actores que antes, sin embargo, no es un 
+crecimiento constante, ya que a partir de ahí han habido años con más o menos
+cantidad sin mostrar ningún patrón aparente.
+
 ### 4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
+```{r movies}
+
+datos <- read.csv("movies.csv")
+
+# Cantidad de actores
+datos$castMenTotal <- as.integer(datos$castMenAmount)
+
+# Cantidad de actrices
+datos$castWomenTotal <- as.integer(datos$castWomenAmount)
+
+# Omitir los datos NA
+datos <- na.omit(datos[, c("popularity", "revenue", "castMenTotal", "castWomenTotal")])
+
+# Calcular las correlaciones
+correlationPopularityWomen <- cor(datos$popularity, datos$castWomenTotal)
+correlationPopularityMen <- cor(datos$popularity, datos$castMenTotal)
+correlationRevenueWomen <- cor(datos$revenue, datos$castWomenTotal)
+correlationRevenueMen <- cor(datos$revenue, datos$castMenTotal)
+
+cat("\nCorrelacion entre popularidad y la cantidad de mujeres en el reparto:")
+print(correlationPopularityWomen)
+cat("\nCorrelacion entre los ingresos  y la cantidad de mujeres en el reparto:")
+print(correlationPopularityMen)
+cat("\nCorrelacion entre popularidad y la cantidad de hombres en el reparto:")
+print(correlationRevenueWomen)
+cat("\nCorrelacion entre los ingresos y la cantidad de hombres en el reparto:")
+print(correlationRevenueMen)
+```
+
+Según los valores de las correlaciones, ninguna de es lo suficientemente alta 
+como para indicar algún tipo de relación o influencia entre la cantidad de los 
+actores y actrices con la popularidad e ingresos de las películas.
+
 
 ### 4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
 ```{r movies}
-# Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
+
+# Seleccionar las primeras 20 filas segun la calificacion promedio de la pelicula
 top_10_rating <- head(datos[order(-datos$voteAvg), c("title", "voteAvg", "director")], 20)
 
 # Filtrar las películas para quitar aquellas que no tienen registro de director
@@ -755,8 +828,10 @@ top_10_rating <- top_10_rating %>%
   filter(!is.na(director) & director != "")
 
 print(top_10_rating)
-
 ```
+
+En la tabla generada se muestran los directores de las 20 películas mejor calificadas.
+
 
 ### 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma, diagrama de dispersión
 ```{r movies}
@@ -772,6 +847,12 @@ ggplot(datos, aes(x = budget, y = revenue)) +
        y = "Ingresos") +
   theme_minimal()
 ```
+
+Es diagrama de dispersión generado muestra que efectivamente, existe una relación 
+entre la cantidad de presupuesto y los ingresos. A mayor presupuesto es esperable
+una mayor recaudación y viceversa. Esto se ve corroborado por el índice de 
+correlación generado, pues este siendo 0.76 se mantiene dentro de un rango donde
+es aceptable indicar correlación.
 
 ### 4.12 ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
 ```{r movies}
@@ -791,9 +872,19 @@ ggplot(ingresos_promedio_por_mes, aes(x = factor(releaseMonth), y = revenue)) +
 
 ```
 
-### 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos?¿cuantas películas, en promedio, se han lanzado por mes?
+Los meses de mayo, junio y julio son los meses que han tenido la mayor cantidad promedio
+de ingresos, estos seguidos de diciembre y noviembre. Esto puede indicar que existe una
+relación entre la época de estreno y la cantidad de recaudación, pues precisamente todos
+estos meses pueden considerarse como vacacionales.
+
+Los meses con menor promedio de ingresos son septiembre, enero, agosto y octubre.
+
+### 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos? ¿cuantas películas, en promedio, se han lanzado por mes?
 ```{r movies}
-# Seleccionar las primeras 10 filas con los campos 'title', 'revenue' y el mes de 'releaseDate'
+# Convertir la fecha de lanzamiento a formato de fecha y extraer el mes
+datos$releaseMonth <- as.numeric(format(as.Date(datos$releaseDate), "%m"))
+
+# Seleccionar las primeras 20 filas de las peliculas con mejores ingresos
 top_20_revenue <- head(datos[order(-datos$revenue), c("title", "revenue", "releaseMonth")], 20)
 
 # Contar la frecuencia de lanzamientos por mes
@@ -804,7 +895,15 @@ barplot(conteo_por_mes, main = "Lanzamientos con Mejores Ingresos por Mes", xlab
 
 ```
 
+Los lanzamientos con mejores ingresos, tomando en cuenta que se toman los primeros 20 puestos, se han visto 
+principalmente en el mes de abril, seguido de diciembre, junio y noviembre. Esta grafica también nos muestra 
+que ningúna película dentro del top de ingresos se ha estrenado en enero, mayo, agosto, septiembre ni
+octubre.
+
 ```{r movies}
+# Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
+datos$releaseYear <- as.numeric(format(as.Date(datos$releaseDate), "%Y"))
+
 # Suponiendo que releaseDate es una cadena en el formato "YYYY-MM-DD"
 datos$releaseMonth <- as.numeric(format(as.Date(datos$releaseDate), "%m"))
 
@@ -825,9 +924,13 @@ print(promedio_peliculas_por_mes)
 barplot(promedio_peliculas_por_mes, main = "Promedio de Películas por Mes", xlab = "Mes", ylab = "Cantidad Promedio de Películas")
 ```
 
+Esta grafica muestra el promedio de películas estrenadas durante los 12 meses en todos 
+los años. Los meses con una mayor cantidad de películas estrenadas son septiembre y
+octubre con un promedio de 10 películas.
+
 ### 4.14 ¿Cómo se correlacionan las calificaciones con el éxito comercial?
 ```{r movies}
-# Seleccionar las primeras 10 filas con los campos 'title', 'revenue', 'voteAvg'
+# Seleccionar las primeras 15 filas con los campos 'title', 'revenue', 'voteAvg'
 top_10_revenue <- head(datos[order(-datos$revenue), c("title", "revenue", "voteAvg")], 15)
 
 # Calcular la correlación entre las calificaciones y los ingresos
@@ -844,26 +947,8 @@ ggplot(top_10_revenue, aes(x = voteAvg, y = revenue)) +
 
 ### 4.15 ¿A qué género principal pertenecen las películas más largas?
 ```{r movies}
-# Cargar la librería ggplot2
-if (!requireNamespace("ggplot2", quietly = TRUE)) {
-  install.packages("ggplot2")
-}
-library(ggplot2)
-
-# Cargar la librería dplyr
-if (!requireNamespace("dplyr", quietly = TRUE)) {
-  install.packages("dplyr")
-}
-library(dplyr)
-
-# Cargar la librería stringr
-if (!requireNamespace("stringr", quietly = TRUE)) {
-  install.packages("stringr")
-}
-library(stringr)
-
-# Seleccionar las primeras 10 filas con los campos 'title' y 'genre'
-top_10_runtime <- head(datos[order(-datos$runtime), c("title", "genres")], 15)
+# Seleccionar las primeras 20 filas con las peliculas mas largas
+top_10_runtime <- head(datos[order(-datos$runtime), c("title", "genres")], 20)
 
 # Contar la frecuencia de cada género
 genre_counts <- top_10_runtime %>%
@@ -874,6 +959,12 @@ genre_counts <- top_10_runtime %>%
 
 print(genre_counts)
 ```
+
+Entendiendo la pregunta como el conteo del genero principal al que pertenecen las películas con mayor duración, 
+dentro de los primeros 20 puestos tenemos que existe un total de 7 películas de drama, 5 películas de acción, 4
+películas documentales y una película de comedia, crimen, musical y guerra. Concluyendo entonces que el género
+de drama es el que predomina dentro de las 20 películas más largas.
+
 
 ### 5.1 Cómo se distribuye la duración de las peliculas
 
