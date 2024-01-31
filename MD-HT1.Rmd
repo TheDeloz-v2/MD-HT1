@@ -969,21 +969,26 @@ de drama es el que predomina dentro de las 20 películas más largas.
 ### 5.1 Cómo se distribuye la duración de las peliculas
 
 ```{r movies}
-# Crear histograma
-hist(datos$runtime, main = "Distribución de Duraciones de Películas", xlab = "Duración en min", ylab = "Frecuencia", col = "skyblue", border = "black")
+# Definir límites deseados para el eje x
+limites_x <- c(0, 200)
+
+plot(datos$runtime, datos$revenue, main = "Relación entre Duración y Ventas de Películas", xlab = "Duración en min", ylab = "Ventas", xlim = limites_x)
 
 ```
+
+El gráfico de dispersión generado ofrece una perspectiva reveladora sobre la relación entre la duración de las películas y sus ventas en el conjunto de datos. Al observar el gráfico, podemos identificar patrones o tendencias que podrían indicar cómo el rango de 100 a 150 de duración están asociados con niveles bastante altos en las ventas  en la industria cinematográfica. La dispersión de puntos a lo largo de los ejes x e y proporciona una representación visual de la variabilidad en las duraciones de las películas y las ventas asociadas. Los datos revelan que una duración óptima de las películas para tener un mayor margen de ganacias se encuentra entre los 100 a los 150 minutos y como se evidencia la mayoría de las películas se encuentran en este a pesar de no haber tenido ganancias.
 
 ### 5.2 Existe una relación entre la popularidad y las votaciones
 ```{r movies}
 # Crear diagrama de dispersión
-plot(datos$popularity, datos$voteAvg, main = "Relación entre Popularidad y Votaciones", xlab = "Popularidad", ylab = "Votación", pch = 16, col = "darkgreen")
+plot(datos$voteAvg,datos$popularity, main = "Relación entre Popularidad y Votaciones", xlab = "Votación", ylab = "Popularidad", pch = 16, col = "darkgreen")
 # Calcular el coeficiente de correlación
 correlation <- cor(datos$popularity, datos$voteAvg)
 
 # Imprimir el coeficiente de correlación
 print(paste("Coeficiente de correlación:", correlation, " gracias a esto podemos concluir que hay una relación muy débil entre la popularidad y las votaciones"))
 ```
+El gráfico de dispersión generado ofrece una perspectiva reveladora sobre la relación entre la popularidad de las películas y sus punteos en las votacines en el conjunto de datos. Al observar el gráfico, podemos identificar patrones o tendencias que podrían indicar cómo el rango de 5 a 8 de votación están asociados con niveles bastante altos en la popularidad  en la industria cinematográfica.Los datos revelan que si la película es popular y posee un gran público el promedio de los votos es normalmente entre  5 a 8 puntos ya que al tener un público variado este poseera distintas críticas y no permitirá que se tengan notas tan altas como en los puntos donde la popularidad es muy baja y sesga los datos a muy altos o muy bajos debido a la cantidad de público que fue a visualizarla.
 
 ### 5.3 Existe alguna relacion entre que exista un video promocional de la pelicula y la popularidad que esta alcanza?
 ```{r movies}
