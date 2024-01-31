@@ -970,6 +970,11 @@ ggplot(top_10_revenue, aes(x = voteAvg, y = revenue)) +
        y = "Ingresos")
 ```
 
+No existe una relación entre las calificaciones y el éxito comercial, esto se corrobora
+en primer lugar con el índice de correlación que es demasiado bajo, y también con la
+gráfica generada, pues no hay ningún patrón observable, más allá de decir que las 
+películas con mejor recaudación oscilan entre 6.5 y 8.5 de calificación.
+
 ### 4.15 ¿A qué género principal pertenecen las películas más largas?
 ```{r }
 # Seleccionar las primeras 20 filas con las peliculas mas largas
